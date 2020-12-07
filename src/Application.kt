@@ -2,6 +2,7 @@ package com.panujaras.beautyclinic
 
 import com.panujaras.beautyclinic.route.hello
 import com.panujaras.beautyclinic.route.login
+import com.panujaras.beautyclinic.route.register
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.gson.*
@@ -21,6 +22,7 @@ fun Application.module() {
     install(Routing){
         hello()
         login()
+        register()
     }
 
 }
