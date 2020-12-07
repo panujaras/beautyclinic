@@ -1,13 +1,25 @@
 package com.panujaras.beautyclinic
 
+import com.panujaras.beautyclinic.route.hello
 import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
+import io.ktor.features.*
+import io.ktor.gson.*
+import io.ktor.routing.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-@Suppress("unused") // Referenced in application.conf
-@kotlin.jvm.JvmOverloads
-fun Application.module(testing: Boolean = false) {
+fun Application.module() {
+    install(DefaultHeaders)
+    install(CallLogging)
+
+    install(ContentNegotiation) {
+        gson {
+        }
+    }
+
+    install(Routing){
+        hello()
+    }
+
 }
 
