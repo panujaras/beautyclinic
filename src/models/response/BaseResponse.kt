@@ -1,4 +1,4 @@
-package com.panujaras.beautyclinic.models
+package com.panujaras.beautyclinic.models.response
 
 data class BaseResponse(
     val success: Boolean = false,
