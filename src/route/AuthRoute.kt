@@ -19,13 +19,22 @@ fun Route.hello() {
 
 }
 
-fun Route.login(){
+fun Route.login() {
 
     post("/api/auth/login") {
         val login = call.receive<LoginRequest>()
+        val response = LoginResponse()
 
-        val data = "${login.username}, ${login.password}"
-        val response = LoginResponse(data)
+        when {
+            login.username.isNullOrBlank() -> response.message = "username null"
+            login.password.isNullOrBlank() -> response.message = "password null"
+            login.username.length < 4 -> response.message = "please enter username >= 4"
+            login.password.length < 4 -> response.message = "please enter password >= 4"
+            else -> {
+                response.success = true
+                response.message = "Login success"
+            }
+        }
 
         call.respond(response)
     }
